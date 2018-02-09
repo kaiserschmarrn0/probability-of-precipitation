@@ -10,8 +10,8 @@ namespace gfx {
     const char* const WND_TITLE = "Je'Game";
 
     /* internal display buffer dimensions */
-    unsigned int const GFX_W = 256;
-    unsigned int const GFX_H = 144;
+    unsigned int const GFX_W = 512;
+    unsigned int const GFX_H = 288;
 
     /* setup functions */
     void start();
