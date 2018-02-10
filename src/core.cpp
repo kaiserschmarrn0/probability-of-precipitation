@@ -5,6 +5,7 @@
 #include "log.h"
 #include "gfx.h"
 #include "evt.h"
+#include "res.h"
 
 typedef unsigned int uint;
 
@@ -27,6 +28,12 @@ events_loop()
     evt::Event ev;
     bool redraw = true;
 
+    res::Texture tex_dog("dog1.jpg");
+    res::Texture tex_cat("cat1.jpg");
+
+    gfx::draw(tex_dog, 0, 0);
+    gfx::flip();
+
     while(true) {
         ev = evt::get();
 
@@ -40,17 +47,17 @@ events_loop()
         else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
             switch(ev.keyboard.keycode) {
                 case ALLEGRO_KEY_Q:
-                    al_clear_to_color(al_map_rgb(255, 255, 255));
+                    gfx::draw(tex_dog, 0, 0);
                     break;
                 case ALLEGRO_KEY_W:
-                    al_clear_to_color(al_map_rgb(0, 0, 0));
+                    gfx::draw(tex_cat, 0, 0);
                     break;
             }
         }
 
         if (redraw) {
             redraw = false;
-            al_flip_display();
+            gfx::flip();
         }
     }
 }
@@ -60,9 +67,11 @@ void start_all() {
     log::start();
     gfx::start();
     evt::start();
+    res::start();
 }
 
 void end_all() {
+    res::end();
     evt::end();
     gfx::end();
     log::end();

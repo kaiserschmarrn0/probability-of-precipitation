@@ -1,9 +1,9 @@
 SOURCES := $(wildcard src/*.cpp)
 OBJECTS := $(patsubst src/%.cpp,build/%.o,$(SOURCES))
-EXE := bin/core
+EXE := bin/pop-game
 
 CXX := g++
-CXXFLAGS = -std=c++11 -lallegro -O2
+CXXFLAGS = -std=c++11 -lallegro -lallegro_font -lallegro_ttf -lallegro_image -O2
 
 all: $(EXE) ;
 .PHONY: all
